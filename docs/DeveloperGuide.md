@@ -268,7 +268,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Streamline engineering hiring by providing tools to optimize the tracking of candidates’ skills, 
+interview progress, referrals and availability, enabling recruiters to quickly find and manage technical talents efficiently.
 
 
 ### User stories
