@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-=======
 ### Min Wai Phyo
 
 <img src="images/minwaiphyo.png" width="200px">
 
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/minwaiphyo)]
 * Role: Code quality
 * Responsibility: Looks after code quality, ensures adherence to coding standards, etc.
 
+### Sim Ying Zhong Bryan
 <img src="images/mashmllo.png" width="200px">
 
 [[github](https://github.com/mashmllo)]
@@ -33,31 +33,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops
 
-### Johnny Doe
+### Daniel Qian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/danielq13.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/DanielQ13)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Nicholas Kee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/frankwotfurters.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/frankwotfurters)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Backend Logic
