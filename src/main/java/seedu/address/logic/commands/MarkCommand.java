@@ -39,6 +39,7 @@ public class MarkCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+        // TODO: check for target person already marked
 
         Person personToMark = lastShownList.get(targetIndex.getZeroBased());
 
