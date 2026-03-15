@@ -278,19 +278,21 @@ interview progress, referrals and availability, enabling recruiters to quickly f
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                 | I want to …​                                          | So that I can…​                                                        |
-| ----- |-------------------------|-------------------------------------------------------|------------------------------------------------------------------------|
-| `* * *` | forgetful techical recuiter | see usage instructions                                | refer to instructions when I forget how to use the App                 |
-| `* * *` | techical recuiter           | add a new person                                      |                                                                        |
-| `* * *` | techical recuiter           | delete a person                                       | remove entries that I no longer need                                   |
-| `* * *` | techical recuiter           | find a person by name                                 | locate details of persons without having to go through the entire list |
-| `* *` | techical recuiter           | filter candidates by interview status                 | see which interviewees have not been interviewed                       |
-| `* *`    | techical recuiter           | search candidates by skills                           | save time performing repetitive tasks                                  |
-| `* *`   | techical recuiter       | search candidates using keywords or technical skills  | locate relevant contacts                                               |
-| `* *`   | techical recuiter       | sort candidates by overall test scores                | easily select the most suitable candidate                              |
-| `*`   | techical recuiter       | schedule interview sessions                           | ensure no two sessions are conflicting                                 |
-| `*`   | techical recuiter       | tag candidates by with availability windows           | prioritise candidates who match hiring timelines                       |
-| `*`   | techical recuiter       | filter candidates by multiple criteria simultaneously | quickly identify candidates ready for the next step                    |
+| Priority | As a …​                | I want to …​                                          | So that I can…​                                                        |
+| ----- |------------------------|-------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *` | technical recuiter | mark candidate as interviewed                         | mark candidates who have been interviewed                              |
+| `* * *` | forgetful technical recuiter | see usage instructions                                | refer to instructions when I forget how to use the App                 |
+| `* * *` | technical recuiter          | add a new person                                      |                                                                        |
+| `* * *` | technical recuiter          | delete a person                                       | remove entries that I no longer need                                   |
+| `* * *` | technical recuiter          | find a person by name                                 | locate details of persons without having to go through the entire list |
+| `* *` | technical recuiter          | filter candidates by interview status                 | see which interviewees have not been interviewed                       |
+| `* *`   | technical recuiter          | search candidates by skills                           | save time performing repetitive tasks                                  |
+| `* *`  | technical recuiter      | search candidates using keywords or technical skills  | locate relevant contacts                                               |
+| `* *`  | technical recuiter      | sort candidates by overall test scores                | easily select the most suitable candidate                              |
+| `* *`   | technical recuiter      | unmark candidate as interviewed                       | correct candidates who were wrongly marked as interviewed              |
+| `*`   | technical recuiter      | schedule interview sessions                           | ensure no two sessions are conflicting                                 |
+| `*`   | technical recuiter      | tag candidates by with availability windows           | prioritise candidates who match hiring timelines                       |
+| `*`   | technical recuiter      | filter candidates by multiple criteria simultaneously | quickly identify candidates ready for the next step                    |
 
 *{More to be added}*
 
