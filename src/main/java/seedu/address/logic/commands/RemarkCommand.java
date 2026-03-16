@@ -24,7 +24,7 @@ public class RemarkCommand extends Command {
             + ": Adds or edits the remark of the candidate identified "
             + "by the index number used in the displayed candidate list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_REMARK + "REMARK\n"
+            + PREFIX_REMARK + " REMARK\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_REMARK + "Strong in algorithms.";
 
