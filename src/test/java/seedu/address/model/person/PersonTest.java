@@ -92,13 +92,18 @@ public class PersonTest {
         // different interviewed status -> returns false
         editedAlice = new PersonBuilder(ALICE).withInterviewed(true).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different remark -> returns false
+        editedAlice = new PersonBuilder(ALICE).withRemark("different remark").build();
+        assertFalse(ALICE.equals(editedAlice));
     }
 
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
             + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress()
-            + ", interviewed=" + ALICE.isInterviewed() + ", tags=" + ALICE.getTags() + "}";
+            + ", interviewed=" + ALICE.isInterviewed() + ", remark=" + ALICE.getRemark()
+            + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
