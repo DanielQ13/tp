@@ -54,7 +54,8 @@ public class MarkCommand extends Command {
             personToMark.getEmail(),
             personToMark.getAddress(),
             personToMark.getTags(),
-            true
+            true,
+            personToMark.getRemark()
         );
         model.setPerson(personToMark, editedPerson);
         return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS, Messages.format(editedPerson)));
