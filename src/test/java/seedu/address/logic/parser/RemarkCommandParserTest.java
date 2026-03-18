@@ -21,6 +21,12 @@ public class RemarkCommandParserTest {
     }
 
     @Test
+    public void parse_deleteRemark_returnsRemarkCommand() {
+        assertParseSuccess(parser, "1 -remark",
+                new RemarkCommand(INDEX_FIRST_PERSON, new Remark("")));
+    }
+
+    @Test
     public void parse_missingPrefix_throwsParseException() {
         assertParseFailure(parser, "1",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE));

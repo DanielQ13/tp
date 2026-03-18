@@ -22,9 +22,12 @@ import seedu.address.testutil.PersonBuilder;
 
 public class RemarkCommandTest {
 
-    private static final Remark REMARK_STUB = new Remark("Strong in algorithms.");
+    private static final Remark REMARK_STUB =
+            new Remark("Strong in algorithms.");
+    private static final Remark REMARK_EMPTY = new Remark("");
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(),
+            new UserPrefs());
 
     @Test
     public void execute_addRemarkUnfilteredList_success() {
@@ -39,6 +42,22 @@ public class RemarkCommandTest {
         expectedModel.setPerson(personToEdit, editedPerson);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_deleteRemarkUnfilteredList_success() {
+        Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person editedPerson = new PersonBuilder(personToEdit).withRemark(REMARK_EMPTY.value).build();
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, REMARK_EMPTY);
+
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS,
+                Messages.format(editedPerson));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.setPerson(personToEdit, editedPerson);
+
+        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+
     }
 
     @Test
