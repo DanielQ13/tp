@@ -21,6 +21,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_BOOLEAN = "True/False value is invalid.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -120,5 +121,21 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Checks if the input is valid boolean representation
+     * @param bool
+     * @return true/false
+     * @throws ParseException
+     */
+    public static boolean parseBoolean(String bool) throws ParseException {
+        if (bool.equals("y") || bool.equals("1")) {
+            return true;
+        }
+        else if (bool.equals("n") || bool.equals("0")) {
+            return false;
+        }
+        throw new ParseException(MESSAGE_INVALID_BOOLEAN);
     }
 }
