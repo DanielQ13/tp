@@ -38,7 +38,7 @@ public class ListCommandTest {
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
-    @Test                                           // <-- add from here
+    @Test
     public void execute_emptyAddressBook_showsEmptyMessage() {
         Model emptyModel = new ModelManager(new AddressBook(), new UserPrefs());
         Model emptyExpectedModel = new ModelManager(new AddressBook(), new UserPrefs());
