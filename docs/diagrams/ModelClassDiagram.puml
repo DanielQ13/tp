@@ -13,7 +13,11 @@ Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
-Class Person
+Class Person {
+    + DEFAULT_INTERVIEWED : boolean
+    - interviewed : boolean
+    + isInterviewed() : boolean
+}
 Class Address
 Class Email
 Class Name
