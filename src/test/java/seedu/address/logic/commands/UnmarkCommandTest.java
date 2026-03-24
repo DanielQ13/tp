@@ -38,7 +38,7 @@ public class UnmarkCommandTest {
         Person unmarkedPerson = new PersonBuilder(interviewedPerson).withInterviewed(false).build();
 
         String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_PERSON_SUCCESS,
-                Messages.format(unmarkedPerson));
+            INDEX_FIRST_PERSON.getOneBased(), unmarkedPerson.getName().fullName);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(interviewedPerson, unmarkedPerson);
@@ -66,7 +66,7 @@ public class UnmarkCommandTest {
         Person unmarkedPerson = new PersonBuilder(interviewedPerson).withInterviewed(false).build();
 
         String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_PERSON_SUCCESS,
-                Messages.format(unmarkedPerson));
+            INDEX_FIRST_PERSON.getOneBased(), unmarkedPerson.getName().fullName);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(interviewedPerson, unmarkedPerson);

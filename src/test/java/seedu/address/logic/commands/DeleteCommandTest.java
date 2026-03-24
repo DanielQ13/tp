@@ -37,7 +37,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(List.of(INDEX_FIRST_PERSON));
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+            "[" + INDEX_FIRST_PERSON.getOneBased() + "] " + personToDelete.getName().fullName + " deleted");
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -61,7 +61,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(List.of(INDEX_FIRST_PERSON));
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+            "[" + INDEX_FIRST_PERSON.getOneBased() + "] " + personToDelete.getName().fullName + " deleted");
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -91,7 +91,10 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(List.of(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON));
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(secondPerson) + "\n" + Messages.format(firstPerson));
+            "[" + INDEX_SECOND_PERSON.getOneBased() + "] " + secondPerson.getName().fullName + " deleted"
+                + "\n"
+                + "[" + INDEX_FIRST_PERSON.getOneBased() + "] " + firstPerson.getName().fullName
+                + " deleted");
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(firstPerson);
@@ -117,7 +120,10 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(List.of(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON));
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(secondPerson) + "\n" + Messages.format(firstPerson));
+            "[" + INDEX_SECOND_PERSON.getOneBased() + "] " + secondPerson.getName().fullName + " deleted"
+                + "\n"
+                + "[" + INDEX_FIRST_PERSON.getOneBased() + "] " + firstPerson.getName().fullName
+                + " deleted");
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(firstPerson);

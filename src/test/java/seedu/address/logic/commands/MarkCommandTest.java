@@ -37,7 +37,7 @@ public class MarkCommandTest {
                 personToMark.getAddress(), personToMark.getTags(), true);
 
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_PERSON_SUCCESS,
-                Messages.format(markedPerson));
+            INDEX_FIRST_PERSON.getOneBased(), markedPerson.getName().fullName);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToMark, markedPerson);
@@ -65,7 +65,7 @@ public class MarkCommandTest {
                 personToMark.getAddress(), personToMark.getTags(), true);
 
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_PERSON_SUCCESS,
-                Messages.format(markedPerson));
+            INDEX_FIRST_PERSON.getOneBased(), markedPerson.getName().fullName);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToMark, markedPerson);
