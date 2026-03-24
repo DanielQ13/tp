@@ -27,7 +27,7 @@ public class RemarkCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_REMARK + " REMARK\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_REMARK + "Strong in algorithms.";
+            + PREFIX_REMARK + " Strong in algorithms.";
 
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to candidate: %1$s";
 
