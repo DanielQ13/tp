@@ -164,7 +164,7 @@ public class DeleteCommandTest {
     public void toStringMethod() {
         List<Index> targetIndexes = List.of(Index.fromOneBased(1));
         DeleteCommand deleteCommand = new DeleteCommand(targetIndexes);
-        String expected = DeleteCommand.class.getCanonicalName() + "{targetIndexes=" + targetIndexes + "}";
+        String expected = DeleteCommand.class.getCanonicalName() + "{targetIndexes=" + targetIndexes.get(0) + "}";
         assertEquals(expected, deleteCommand.toString());
     }
 
