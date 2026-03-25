@@ -239,6 +239,49 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Remark feature
+The *Remark* feature allows recruiters to add, edit, or remove remarks associated with a candidate.
+This is useful for storing additional qualitative notes such as interview impressions or technical strengths.
+
+#### Implementation
+The feature is implemented using `RemarkCommand` and `RemarkCommandParser`.
+
+When the user executes a command such as:
+`remark 1 -remark Strong in algorithms` 
+the following steps occur:
+1. The input command is received by the `LogicManager`
+2. `AddressBookParser` identifies the command and delegates parsing to `RemarkCommandParser`.
+3. `RemarkCommand` extracts and validates:
+    * the target `Index`
+    * the `Remark` string (ensuring it matches allowed constraints)
+4. A `RemarkCommand` object is created
+5. During execution, `RemarkCommand`:
+    * retrieves the target `Person` from the filtered list in the `Model`
+    * creates a new `Person` object with the updated `Remark`
+    * replaces the old `Person` using `Model#setPerson()`
+6. A `CommandResult` is returned and displayed to the user.
+
+If the remark provided is empty, the system interprets it as a request to remove the remark.
+
+#### Sequence Diagram
+
+The following sequence diagram illustrates the interaction between components when executing a remark command:
+
+![RemarkSequenceDiagram](images/RemarkSequenceDiagram.png)
+
+#### Design consideration
+
+**Aspect: How remarks are stored**
+
+* **Current approach (chosen):** Store `Remark` as a field within `Person`
+  * Pros: Simple design, consistent with existing architecture
+  * Cons: Requires creating a new `Person` object for each update
+
+* **Alternative:** Store remarks separately from `Person`
+  * Pros: Avoids recreating `Person`
+  * Cons: Adds complexity and weakens encapsulation
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
