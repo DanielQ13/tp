@@ -1,5 +1,8 @@
 package seedu.address.commons.util;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Utility class for computing string similarity using the
  * Levenshtein Distance algorithm.
@@ -19,6 +22,9 @@ package seedu.address.commons.util;
  */
 public class LevenshteinDistanceUtil implements SimilarityMetric {
 
+    private static final Logger logger = Logger.getLogger(LevenshteinDistanceUtil.class.getName());
+
+
     /**
      * Compute the similarity between two strings using Levenshtein Distance.
      * <p>
@@ -32,13 +38,25 @@ public class LevenshteinDistanceUtil implements SimilarityMetric {
      *
      * @param first  First string to compare
      * @param second Second string to compare
-     * @return the minimum number of single-character edits required to transform
-     *          {@code first} into {@code second}.
+     * @return a similarity score between 0.0 and 1.0
      */
     @Override
     public double similarity(String first, String second) {
+        assert first != null : "String 'first' must not be null";
+        assert second != null : "String 'second' must not be null";
+
         String string1 = normalize(first);
         String string2 = normalize(second);
+
+        if (string1.equals(string2)) {
+            logger.log(Level.FINE, "Strings are identical after normalization.");
+            return 1.0;
+        }
+
+        if (string1.length() == 0 && string2.length() == 0) {
+            logger.log(Level.FINE, "Both strings are empty");
+            return 1.0;
+        }
 
         int[][] dp = createDistanceTable(string1.length(), string2.length());
         fillDistanceTable(dp, string1, string2);

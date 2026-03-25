@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
@@ -22,7 +24,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
      * @param keywords  The list of keywords to match
      */
     public NameContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+        requireNonNull(keywords);
+        this.keywords = filterValidKeywords(keywords);
         List<SimilarityMetric> metrics = List.of(
                 new LevenshteinDistanceUtil(),
                 new CosineNGramUtil(2)
@@ -30,19 +33,50 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
         this.fuzzyUtil = new FuzzySimilarityUtil(metrics);
     }
 
+    /**
+     * Test whether the given {@code Person}'s name matches
+     * any of the keywords.
+     *
+     * <ul>
+     *     <li>Returns {@code false} if {@code person} is null </li>
+     *     <li> Returns {@code false} if {@code person.getName()}
+     *     or fullName is null</li>
+     *     <li>Ignores empty keywords</li>
+     * </ul>
+     *
+     * Matching strategy:
+     * <ul>
+     *     <li>Exact substring match</li>
+     *     <li>Fuzzy similarity with dynamic thresholds</li>
+     * </ul>
+     *
+     * @param person The {@code Person} to test
+     * @return {@code true} if any keyword matches the
+     *      person's name; {@code false} otherwise
+     */
     @Override
     public boolean test(Person person) {
-        String[] name = person.getName().fullName.toLowerCase().split("\\s+");
+        assert keywords != null : "Keywords should never be null here";
+        if (person == null
+                || person.getName() == null
+                || person.getName().fullName == null) {
+            return false;
+        }
+
+        String fullName = person.getName().fullName.toLowerCase().trim();
+        if (fullName.isEmpty()) {
+            return false;
+        }
+
+        String[] words = fullName.split("\\s+");
         return keywords.stream()
-                .map(String::toLowerCase)
                 .anyMatch(keyword -> {
-                    String normalizedKeyword = keyword.toLowerCase();
                     double dynamicThreshold = getThreshold(
-                            Math.min(keyword.length(), normalizedKeyword.length()));
-                    return Arrays.stream(name)
+                            keyword.length());
+                    return Arrays.stream(words)
                             .anyMatch(word ->
-                                    word.contains(normalizedKeyword)
-                                            || fuzzyUtil.isSimilar(word, normalizedKeyword,
+                                    word.contains(keyword)
+                                            || fuzzyUtil.isSimilar(word, keyword,
                                             dynamicThreshold));
                 });
     }
@@ -71,8 +105,12 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
      * while longer words use a stricter threshold to reduce false positive.
      *
      * <ul>
-     *     <li>Words of length 3 or less: threshold are set to be more lenient to 0.5</li>
-     *     <li>Words of length long than 3: threshold are set to be stricter to 0.8</li>
+     *     <li>Words of length 3 or less: threshold are set to be more lenient
+     *     to 0.5</li>
+     *     <li>Words of length between 4 and 5: threshold are set to be more lenient
+     *     to 0.65</li>
+     *     <li>Words of length long than 5: threshold are set to be stricter
+     *     to 0.8</li>
      * </ul>
      *
      * @param minWordLength Length of the shorter of the two words being compared
@@ -81,10 +119,20 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
     private static double getThreshold(int minWordLength) {
         if (minWordLength <= 3) {
             return 0.5;
+        } else if (minWordLength <= 5) {
+            return 0.65;
         }
         return 0.8;
     }
 
+    private static List<String> filterValidKeywords(
+            List<String> keywords) {
+        return keywords.stream()
+                .map(String::toLowerCase)
+                .filter(keyword ->
+                        keyword != null && !keyword.trim().isEmpty())
+                .toList();
+    }
     @Override
     public String toString() {
         return new ToStringBuilder(this).add("keywords", keywords).toString();

@@ -1,6 +1,9 @@
 package seedu.address.commons.util;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
@@ -26,13 +29,16 @@ public class FuzzySimilarityUtil {
      * Constructs a new {@code FuzzySimilarityUtil} with the given list of similarity metrics.
      *
      * @param metrics The list of {@link SimilarityMetric} instances to use
-     * @throws IllegalAccessException if {@code metrics} is null or empty
+     * @throws IllegalArgumentException if {@code metrics} is null or empty
+     * @throws NullPointerException if any element in {@code metrics} is null
      */
     public FuzzySimilarityUtil(List<SimilarityMetric> metrics) {
         if (metrics == null || metrics.isEmpty()) {
             throw new IllegalArgumentException("Metrics list must not be null or empty");
         }
-        this.metrics = metrics;
+        this.metrics = List.copyOf(metrics);
+
+        logger.info("FuzzySimilarityUtil initialized with " + this.metrics.size() + " metrics.");
     }
 
     /**
@@ -54,10 +60,14 @@ public class FuzzySimilarityUtil {
         double maxScore = 0.0;
 
         for (SimilarityMetric metric : metrics) {
-            double current = metric.similarity(first, second);
-            logger.warning(metric + ": " + current);
-            if (current > maxScore) {
-                maxScore = current;
+            try {
+                double current = metric.similarity(first, second);
+                if (current > maxScore) {
+                    maxScore = current;
+                }
+            } catch (IllegalArgumentException | ArithmeticException e) {
+                logger.log(Level.WARNING,
+                        String.format("Metric %s failed for '%s' vs '%s'", metric, first, second), e);
             }
         }
 
