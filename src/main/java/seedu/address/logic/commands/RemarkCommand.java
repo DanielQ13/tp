@@ -30,7 +30,7 @@ public class RemarkCommand extends Command {
 
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark for [%1$d] %2$s";
 
-        public static final int MAX_REMARK_LENGTH = 120;
+    public static final int MAX_REMARK_LENGTH = 120;
 
     public static final String MESSAGE_CONSTRAINTS =
             "Remark can be empty to clear it."
