@@ -31,7 +31,11 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         String interviewedValue = argMultimap.getValue(PREFIX_INTERVIEWED).get().trim();
         boolean interviewedBoolean = ParserUtil.parseBoolean(interviewedValue);
 
-        return new FilterCommand(new IsInterviewedPredicate(interviewedBoolean));
+        FilterCommand command = new FilterCommand(new IsInterviewedPredicate(interviewedBoolean));
+
+        assert(command.getPredicate().equals(new IsInterviewedPredicate(ParserUtil.parseBoolean(interviewedValue))));
+
+        return command;
     }
 
 }
