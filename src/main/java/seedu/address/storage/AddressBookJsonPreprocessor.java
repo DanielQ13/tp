@@ -290,10 +290,6 @@ public class AddressBookJsonPreprocessor {
     }
 
     private void writeJson(Path path, ArrayNode persons) {
-        if (persons.size() == 0) {
-            logger.log(Level.WARNING, "No valid entries found. Original data preserved");
-            return;
-        }
 
         ObjectNode root = mapper.createObjectNode();
         root.set("persons", persons);
