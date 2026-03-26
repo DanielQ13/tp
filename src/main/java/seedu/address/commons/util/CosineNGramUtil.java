@@ -20,8 +20,13 @@ public class CosineNGramUtil implements SimilarityMetric {
      * Constructs a {@code CosineNGramUtil} with the specified n-gram size.
      *
      * @param nGramSize The size of each n-gram (e.g. 2 for bigrams, 3 for trigrams)
+     * @throws IllegalArgumentException if {@code nGramSize <= 0}
      */
     public CosineNGramUtil(int nGramSize) {
+        if (nGramSize <= 0) {
+            throw new IllegalArgumentException("nGramSize > 0");
+        }
+
         this.nGramSize = nGramSize;
     }
 
@@ -43,6 +48,10 @@ public class CosineNGramUtil implements SimilarityMetric {
      */
     @Override
     public double similarity(String first, String second) {
+        if (first == null || second == null) {
+            return 0.0;
+        }
+
         Map<String, Integer> vector1 = buildVector(first);
         Map<String, Integer> vector2 = buildVector(second);
 
@@ -54,7 +63,8 @@ public class CosineNGramUtil implements SimilarityMetric {
             return 0.0;
         }
 
-        return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+        double denominator = Math.sqrt(normA) * Math.sqrt(normB);
+        return dotProduct / denominator;
     }
 
     /**
