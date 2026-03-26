@@ -17,7 +17,7 @@ public abstract class PredicateCommand extends Command {
         this.predicate = predicate;
     }
 
-    protected Predicate<Person> getPredicate() {
+    public Predicate<Person> getPredicate() {
         return this.predicate;
     }
 
