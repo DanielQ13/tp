@@ -192,7 +192,7 @@ public class AddressBookJsonPreprocessor {
      * Attempts to recover malformed JSON content by
      * extracting and reconstructing individual person
      * objects.
-     *
+     * <p>
      * Missing required fields are filled with
      * default values:
      * <ul>
@@ -213,8 +213,8 @@ public class AddressBookJsonPreprocessor {
         String personArray = content.replaceAll("(?s).*\"persons\"\\s*:\\s*\\[(.*)\\].*", "$1");
 
         String[] entries = personArray.split("(?<=\\}),(?=\\s*\\{)");
-        for (int i = 0; i < entries.length; i++) {
-            String obj = entries[i].trim();
+        for (String obj : entries) {
+            obj = obj.trim();
             if (!obj.startsWith("{")) {
                 obj = "{" + obj;
             }
@@ -226,12 +226,10 @@ public class AddressBookJsonPreprocessor {
                 ObjectNode node = (ObjectNode) mapper.readTree(obj);
 
                 for (String field : REQUIRED_FIELDS) {
-                    if (!node.has(field)) {
-                        if (field.equals("interviewed")) {
-                            node.put(field, false);
-                        } else {
-                            node.put(field, "");
-                        }
+                    if (!node.has(field) && field.equals("interviewed")) {
+                        node.put(field, false);
+                    } else if (!node.has(field)) {
+                        node.put(field, "");
                     }
                 }
 
@@ -270,20 +268,25 @@ public class AddressBookJsonPreprocessor {
         }
 
         JsonNode value = node.get(field);
+        boolean result = extractBooleanValue(value);
+        node.put(field, result);
+    }
 
-        boolean result = false;
-        if (value.isBoolean()) {
-            result = value.asBoolean();
-        } else if (value.isTextual()) {
-            String text = value.asText().trim().toLowerCase();
-            result = Arrays.asList(TRUE_VALUES).contains(text);
-        } else if (value.isNumber()) {
-            result = value.asInt() != 0;
-        } else {
-            result = false;
+    private boolean extractBooleanValue(JsonNode value) {
+        if (value == null || value.isNull()) {
+            return false;
         }
 
-        node.put(field, result);
+        if (value.isBoolean()) {
+            return value.asBoolean();
+        } else if (value.isTextual()) {
+            String text = value.asText().trim().toLowerCase();
+            return Arrays.asList(TRUE_VALUES).contains(text);
+        } else if (value.isNumber()) {
+            return value.asInt() != 0;
+        }
+
+        return false;
     }
 
     private void writeJson(Path path, ArrayNode persons) {
