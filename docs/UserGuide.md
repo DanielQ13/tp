@@ -130,6 +130,18 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 * `find aled` returns `Alex Yeoh`<br> ![result for 'find aled'](images/findAledResult.png)
 
+### Filtering persons by name: `filter`
+
+Finds persons whose names match any of the given filters.
+
+Format: `filter -interviewed y/n/1/0`
+
+* The filter will be done on all persons, not only the currently listed ones.
+
+Examples:
+* `filter -interviewed y` returns persons who are marked as interviewed.
+* `filter -interviewed 0` returns persons who are <u>not</u> marked as interviewed.
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the recruiterplus.
