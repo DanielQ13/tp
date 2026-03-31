@@ -15,15 +15,15 @@ RecruiterPlus is a **desktop app for managing contacts, optimized for use via a 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2526S2-CS2103-F09-2/tp/releases).
+2. Download the latest `.jar` file from [here](https://github.com/AY2526S2-CS2103-F09-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your RecruiterPlus.
+3. Copy the file to the folder you want to use as the _home folder_ for your RecruiterPlus.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar recruiterplus.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar recruiterplus.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -36,7 +36,7 @@ RecruiterPlus is a **desktop app for managing contacts, optimized for use via a 
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ Format: `help`
 
 Adds a person to the recruiterplus.
 
-Format: `add -name NAME -phone PHONE_NUMBER -email EMAIL -address ADDRESS [-tag TAG]…​`
+Format: `add -name NAME -phone PHONE_NUMBER -email EMAIL -address ADDRESS -tag TAG…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)

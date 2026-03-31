@@ -71,7 +71,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'recruiterplus.jar'
 }
 
 defaultTasks 'clean', 'test'
