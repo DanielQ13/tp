@@ -17,7 +17,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2526s2-cs2103-f09-2.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
-        public static final String EXAMPLE_COMMANDS_MESSAGE = String.join(System.lineSeparator(),
+    public static final String EXAMPLE_COMMANDS_MESSAGE = String.join(System.lineSeparator(),
             "Example commands:",
             "- list",
             "- add -name John Doe -phone 98765432 -email johnd@example.com -address John street, block 123, #01-01",
