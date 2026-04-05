@@ -39,7 +39,7 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
 
         String remarkValue = splitArgs.length == 1 ? "" : splitArgs[1].trim();
 
-        if (remarkValue.startsWith("-remark")) {
+        if (remarkValue.equals("-remark") || remarkValue.startsWith("-remark ")) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE)
             );
