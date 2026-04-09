@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* No external sources were used.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -314,7 +314,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | technical recuiter      | unmark candidate as interviewed                       | correct candidates who were wrongly marked as interviewed              |
 | `*`   | technical recuiter      | filter candidates by multiple criteria simultaneously | quickly identify candidates ready for the next step                    |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -356,7 +355,7 @@ Use case ends.
     * Names should only contain English letters (A-Z, a-z) and spaces, and it should not be blank. No digits or 
       special characters are allowed.
 
-       Use case ends.
+  Use case ends.
 
 * 2d. Invalid phone number.
   * 2d1.RecruiterPlus shows:
@@ -518,8 +517,6 @@ Use case ends.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
@@ -547,7 +544,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file. <br>
+   Expected: Shows the GUI with a set of sample contacts. The initial window size and position may not be optimal.
 
 1. Saving window preferences
 
@@ -556,7 +554,19 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Shutdown using the `exit` command
+
+    1. Launch the app.
+   
+    1. Execute `exit`.<br>
+   Expected: The application closes successfully.
+
+1. Shutdown using the `bye` alias
+
+    1. Launch the app.
+
+    1. Execute `bye`.<br>
+       Expected: The application closes successfully.
 
 ### Deleting a person
 
@@ -567,21 +577,58 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
+   1. Test case: `delete 1 3`<br>
+      Expected: The 1st and 3rd displayed candidates are deleted in one command.The result message lists both deletions.
+
+   1. Test case: `find Alex` followed by `delete all`<br>
+      Expected: All currently displayed candidates in the filtered list are deleted.
+      Candidates outside the filtered list remain untouched.
+
    1. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Data is saved automatically after modifying commands
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Launch the app and execute `delete 1`.
+   
+    1. Close the app and launch it again.<br>
+   Expected: The deletion persists after restart.
 
-1. _{ more test cases …​ }_
+1. Missing data files
+
+   1. Close the app.
+
+   1. Delete `data/addressbook.json` from the app's home folder.
+
+   1. Launch the app.<br>
+   Expected: The app starts successfully with sample data.
+
+1. Corrupted data file with some invalid entries
+
+    1. Close the app.
+
+    1. Edit `data/addressbook.json` so that one valid candidate entry remains valid,
+     and another entry contains an invalid field value
+     or is missing a required field.  
+
+    1. Launch the app.<br>
+       Expected: The app starts successfully. Valid entries remain in the main data file.
+       Invalid entries are quarantined into `data/addressbook_invalid.json` 
+
+1. Severely malformed data file
+
+    1. Close the app.
+
+    1. Replace the contents of `data/addressbook.json` with clearly malformed JSON, for example `this is not JSON`.
+
+    1. Launch the app.<br>
+       Expected: The app starts successfully. If recovery is not possible,
+       the displayed list is empty and the malformed content is not loaded.
 
 ### Marking a candidate as interviewed
 
@@ -593,10 +640,31 @@ testers are expected to do more *exploratory* testing.
        Expected: First candidate is marked as interviewed. Success message shown in the status message.
 
     1. Test case: `mark 1` again<br>
-       Expected: Error message shown indicating candidate is already marked as interviewed.
+       Expected: No change is made. An error message indicates that
+       the candidate has already been marked as interviewed.
 
     1. Test case: `mark 0`<br>
-       Expected: No candidate is marked. Error details shown in the status message.
+       Expected: No candidate is marked. An error message is shown.
+
+   1. Test case: `mark 999` when fewer than 999 candidates are shown<br>
+      Expected: No candidate is marked. An error message is shown.
+
+### Unmarking a candidate as not interviewed
+
+1. Unmarking a candidate while all candidates are being shown
+
+    1. Prerequisites: List all candidates using the `list` command. Multiple candidates in the list.
+    Execute `mark 1` so that the first candidate is already marked as interviewed.
+
+    1. Test case: `unmark 1`<br>
+       Expected: First candidate is marked as not interviewed. Success message shown in the status message.
+
+    1. Test case: `unmark 1` again<br>
+       Expected: No change is made. An error message indicates that
+      the candidate has already been marked as not interviewed.
+
+    1. Test case: `unmark 0`<br>
+       Expected: No candidate is unmarked. An error message is shown.
 
 ### Adding a remark to a candidate
 
@@ -607,8 +675,48 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `remark 1 Strong in algorithms.`<br>
        Expected: Remark added to first candidate. Success message shown in the status message.
 
+   1. Test case: `remark 1 Updated strong in Simulations.`<br>
+      Expected: Remark replaced with the new remark. Success message shown in the status message.
+
     1. Test case: `remark 1`<br>
        Expected: Remark removed from first candidate. Success message shown in the status message.
 
     1. Test case: `remark 0 test`<br>
        Expected: No remark added. Error details shown in the status message.
+
+   1. Test case: `remark 999` when fewer than 999 candidates are shown<br>
+      Expected: No remark added. Error details shown in the status message.
+
+### Finding candidates by name
+
+1. Finding candidates while all candidates are being shown
+
+    1. Prerequisites: List all candidates using the `list` command. Multiple candidates in the list, with at least 
+       some distinct names.
+
+   1. Test case: `find alex`<br>
+      Expected: All candidates whose names match `Alex` are shown.
+      A success message indicates how many candidates were found.
+
+   1. Test case: `find alex`<br>
+      Expected: Same result as `find Alex`, since search is case-insensitive.
+
+   1. Test case: `find alex david`<br>
+      Expected: Candidates whose names match either `alex` or `david` are shown.
+
+   1. Test case: `find  aled`<br>
+      Expected: Candidates with close name matches such as `Alex` may be shown, since fuzzy matching is supported.
+
+   1. Test case: `find  Al`<br>
+      Expected: Candidates whose names partially match `Al` are shown. Depending on the candidate list,
+     this may return more results than expected because partial matching is supported.
+
+   1. Test case: `find  zzzzzz`<br>
+      Expected: No candidates are shown. A success message indicates that 0 candidates were found.
+
+   1. Test case: `find Alex` followed by `delete 1`<br>
+      Expected: Only the first candidate in the filtered results is deleted.
+     Candidates outside the filtered list are unaffected.
+
+   1. Test case: `find`<br>
+      Expected: No search is performed. An error message is shown.
