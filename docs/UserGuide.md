@@ -221,11 +221,12 @@ Format: `remark INDEX [REMARK]`
 * The index **must be a positive integer** 1, 2, 3, …​
 * To update a remark, re-enter the full updated remark. Partial edits are not supported.
 * An existing remark will be overwritten by the new remark.
+* Using `remark INDEX` without specifying any remark text removes the existing remark.
 * A valid remark can consist of zero or more alphanumeric characters (letters and digits), spaces, and the following symbols: `. , ! ? ' " ( ) - / : @ # $ % & + * = [ ]`
 
 Examples:
 * `remark 1 Strong in algorithms.` adds the remark "Strong in algorithms." to the 1st candidate.
-* `remark 1` clears the remark of the 1st candidate.
+* `remark 1` removes the remark of the 1st candidate because no remark text is provided.
 
 ### Clearing all entries : `clear`
 
