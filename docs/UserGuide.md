@@ -79,6 +79,8 @@ Adds a person to the recruiterplus.
 
 Format: `add -name NAME -phone PHONE_NUMBER -email EMAIL -address ADDRESS -tag TAG…​`
 * At least the `-name`, `-phone`, `-email` and `-address` fields must be provided.
+* A candidate is considered a duplicate if either `-phone` or `-email` already exists.
+* Candidates can share the same name, but both `-phone` and `-email` must each be different from existing candidates.
 * `PHONE_NUMBER` must be exactly 8 digits and start with `8` or `9`.
 * The `-tag` field is optional.
 * The `-tag` field can be used multiple times to add multiple tags to a person. Eg: `-tag friend -tag colleague` adds the tags `friend` and `colleague` to the person.
@@ -107,7 +109,12 @@ Format: `edit INDEX [-name NAME] [-phone PHONE] [-email EMAIL] [-address ADDRESS
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+<<<<<<< HEAD
 * If `-phone` is provided, it must be exactly 8 digits and start with `8` or `9`.
+=======
+* Remarks cannot be edited using `edit`.
+* To update a remark, use `remark INDEX [REMARK]` and re-enter the full updated remark.
+>>>>>>> upstream/master
 
 #### Updating of tags
 * Using the `-tag` option will **replace all existing tags** with the newly specified tags.
@@ -145,14 +152,15 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 * `find aled` returns `Alex Yeoh`<br> ![result for 'find aled'](images/findAledResult.png)
 
-### Filtering persons by name: `filter`
+### Filtering persons by interview status: `filter`
 
-Finds persons whose names match any of the given filters.
+Finds persons by interviewed status.
 
 Format: `filter -interviewed INTERVIEWED_STATUS`
 
 * The filter will be done on all persons, not only the currently listed ones.
 * Accepted values for `INTERVIEWED_STATUS` are `y/n/1/0`.
+* Name-based filtering is not supported by `filter`. Use `find` for name filtering.
 
 Examples:
 * `filter -interviewed y` returns persons who are marked as interviewed.
@@ -210,19 +218,21 @@ Examples:
 
 ### Adding a remark to a candidate : `remark`
 
-Adds or edits a remark for the specified candidate.
+Adds a new remark or replaces an existing remark for the specified candidate.
 
 Format: `remark INDEX [REMARK]`
 
-* Adds or edits the remark of the candidate at the specified `INDEX`.
+* Adds a remark for the candidate at the specified `INDEX`, or replaces the existing remark.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* To update a remark, re-enter the full updated remark. Partial edits are not supported.
 * An existing remark will be overwritten by the new remark.
+* Using `remark INDEX` without specifying any remark text removes the existing remark.
 * A valid remark can consist of zero or more alphanumeric characters (letters and digits), spaces, and the following symbols: `. , ! ? ' " ( ) - / : @ # $ % & + * = [ ]`
 
 Examples:
 * `remark 1 Strong in algorithms.` adds the remark "Strong in algorithms." to the 1st candidate.
-* `remark 1` clears the remark of the 1st candidate.
+* `remark 1` removes the remark of the 1st candidate because no remark text is provided.
 
 ### Clearing all entries : `clear`
 
@@ -276,6 +286,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [-name NAME] [-phone PHONE_NUMBER] [-email EMAIL] [-address ADDRESS] [-tag TAG]…​`<br> e.g.,`edit 2 -name James Lee -email jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Filter** | `filter -interviewed INTERVIEWED_STATUS`<br> e.g., `filter -interviewed y`
 **Mark** | `mark INDEX`<br> e.g., `mark 1`
 **Unmark** | `unmark INDEX`<br> e.g., `unmark 1`
 **Remark** | `remark INDEX [REMARK]`<br> e.g., `remark 1 Strong in algorithms.`
