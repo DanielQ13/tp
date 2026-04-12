@@ -291,4 +291,5 @@ Action | Format, Examples
 **Unmark** | `unmark INDEX`<br> e.g., `unmark 1`
 **Remark** | `remark INDEX [REMARK]`<br> e.g., `remark 1 Strong in algorithms.`
 **List** | `list`
+**exit** | `exit` (alias: `bye`)
 **Help** | `help`
