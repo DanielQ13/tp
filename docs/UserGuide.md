@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-RecruiterPlus is a **desktop app for managing candidates, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, RecruiterPlus can get your candidate management tasks done faster than traditional GUI apps.
+RecruiterPlus is a desktop app meant for **Recruiters** to **efficiently manage contact details of potential candidates**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, RecruiterPlus can get your candidate management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
