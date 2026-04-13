@@ -82,6 +82,12 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
 
+        if (trimmedName.length() > Name.MAX_LENGTH) {
+            logger.info("ParserUtil.parseName: name exceeds " + Name.MAX_LENGTH
+                    + " characters — length=" + trimmedName.length());
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+
         if (!Name.isValidName(trimmedName)) {
             logger.info("ParserUtil.parseName: invalid name '" + trimmedName + "'");
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
@@ -166,6 +172,12 @@ public class ParserUtil {
 
         if (trimmedEmail.isEmpty()) {
             logger.info("ParserUtil.parseEmail: received empty email string");
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+
+        if (trimmedEmail.length() > Email.MAX_EMAIL_LENGTH) {
+            logger.info("ParserUtil.parseEmail: email exceeds " + Email.MAX_EMAIL_LENGTH
+                    + " characters — length=" + trimmedEmail.length());
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
 

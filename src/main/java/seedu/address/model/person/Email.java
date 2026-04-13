@@ -9,8 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Email {
 
-    private static final String SPECIAL_CHARACTERS = "+_.-";
-    private static final int MAX_EMAIL_LENGTH = 100;
+    public static final String SPECIAL_CHARACTERS = "+_.-";
+    public static final int MAX_EMAIL_LENGTH = 254;
+
     public static final String MESSAGE_CONSTRAINTS = "Emails must contain '@' and be at most "
             + MAX_EMAIL_LENGTH + " characters long. "
             + "Format: local-part@domain, where:\n"
@@ -22,7 +23,9 @@ public class Email {
             + "The domain name must:\n"
             + "    - end with a domain label at least 2 characters long\n"
             + "    - have each domain label start and end with alphanumeric characters\n"
-            + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
+            + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.\n"
+            + "3. Email must be at most " + MAX_EMAIL_LENGTH + " characters long.";
+
     // alphanumeric and special characters
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
     private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "([" + SPECIAL_CHARACTERS + "]"
@@ -31,6 +34,7 @@ public class Email {
             + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
     private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
+
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
     public final String value;
@@ -52,6 +56,7 @@ public class Email {
      * and must not exceed {@value #MAX_EMAIL_LENGTH} characters.
      */
     public static boolean isValidEmail(String test) {
+        requireNonNull(test);
         return test.length() <= MAX_EMAIL_LENGTH && test.matches(VALIDATION_REGEX);
     }
 
