@@ -437,7 +437,7 @@ Use case ends.
 
    Use case ends.
 
-* 3b. Invalid ID (not a non-negative integer).
+* 3b. Invalid ID (not a positive integer).
    * 3b1. RecruiterPlus shows: Invalid command format! (followed by `delete` usage details)
 
    Use case ends.
@@ -473,7 +473,7 @@ Use case ends.
 
    Use case ends.
 
-* 3b. Invalid ID (not a non-negative integer).
+* 3b. Invalid ID (not a positive integer).
    * 3b1. RecruiterPlus shows: Invalid command format! (followed by `mark` usage details)
 
    Use case ends.
@@ -509,7 +509,7 @@ Use case ends.
 
   Use case ends.
 
-* 3b. Invalid ID (not a non-negative integer).
+* 3b. Invalid ID (not a positive integer).
    * 3b1. RecruiterPlus shows: Invalid command format! (followed by `remark` usage details)
 
   Use case ends.
