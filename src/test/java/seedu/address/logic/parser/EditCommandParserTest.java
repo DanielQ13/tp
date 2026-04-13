@@ -83,7 +83,6 @@ public class EditCommandParserTest {
         String userInput = "0" + NAME_DESC_AMY;
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(Index.fromZeroBased(Integer.MAX_VALUE), descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
