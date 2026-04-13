@@ -485,6 +485,52 @@ Use case ends.
 
    Use case resumes at step 2.
 
+* 4b. Candidate is not marked as interviewed.
+   * 4b1. RecruiterPlus shows: The candidate is not marked as interviewed.
+
+   Use case resumes at step 2.
+
+**Use case: Unmark a candidate as not interviewed**
+
+**MSS**
+
+1. User requests to list candidates.
+2. RecruiterPlus shows a list of candidates.
+3. User requests to unmark a specific candidate in the list using `unmark <id>`.
+4. RecruiterPlus unmarks the candidate as not interviewed.
+5. RecruiterPlus updates the GUI and shows a success message.
+
+Use case ends.
+
+**Extends:** Use case: View candidates, 2a (list is empty)
+
+**Extensions**
+
+* 2a. The list is empty.
+   * 2a1. RecruiterPlus shows "No candidates saved!".
+
+   Use case ends.
+
+* 3a. Invalid format.
+   * 3a1. RecruiterPlus shows: Invalid command format! (followed by `unmark` usage details)
+
+   Use case ends.
+
+* 3b. Invalid ID (not a positive integer).
+   * 3b1. RecruiterPlus shows: Invalid command format! (followed by `unmark` usage details)
+
+   Use case ends.
+
+* 4a. ID not found.
+   * 4a1. RecruiterPlus shows: invalid candidate index error message
+
+   Use case resumes at step 2.
+
+* 4b. Candidate is not marked as interviewed.
+   * 4b1. RecruiterPlus shows: The candidate is not marked as interviewed.
+
+   Use case resumes at step 2.
+
 **Use case: Add a remark to a candidate**
 
 **MSS**
