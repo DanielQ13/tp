@@ -267,6 +267,16 @@ public class AddressBookJsonPreprocessorTest {
     }
 
     @Test
+    public void preProcess_missingFile_doesNotCreateEmptyAddressBookFile() {
+        AddressBookJsonPreprocessor preprocessor =
+                new AddressBookJsonPreprocessor(jsonFile);
+
+        assertDoesNotThrow(preprocessor::preProcess);
+        assertTrue(Files.notExists(jsonFile));
+        assertTrue(Files.notExists(invalidFile));
+    }
+
+    @Test
     public void preProcess_mixedEntries_splitCorrectly()
             throws Exception {
         String json = """
