@@ -72,6 +72,11 @@ public class AddressBookJsonPreprocessor {
      * </ul>
      */
     public void preProcess() {
+        if (Files.notExists(jsonFilePath)) {
+            logger.log(Level.INFO, "JSON file not found. Skipping preprocessing: " + jsonFilePath);
+            return;
+        }
+
         readJsonContent()
                 .flatMap(this::parseJson)
                 .ifPresentOrElse(this::processEntries, () ->

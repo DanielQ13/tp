@@ -86,8 +86,15 @@ public class MainApp extends Application {
             if (!addressBookOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getAddressBookFilePath()
                         + " populated with a sample AddressBook.");
+                initialData = SampleDataUtil.getSampleAddressBook();
+                storage.saveAddressBook(initialData);
+            } else {
+                initialData = addressBookOptional.get();
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+        } catch (IOException e) {
+            logger.warning("Sample data could not be saved to " + storage.getAddressBookFilePath()
+                    + ". Will continue with sample data in memory only.");
+            initialData = SampleDataUtil.getSampleAddressBook();
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
