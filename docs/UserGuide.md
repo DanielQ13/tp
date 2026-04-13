@@ -69,6 +69,14 @@ RecruiterPlus is a **desktop app for managing candidates, optimized for use via 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Important Note about INDEX:**<br>
+
+`INDEX` refers to the index number of a candidate **in the currently displayed list**. The displayed list can change after using commands like `find` or `filter`. **After narrowing down the list, indices will be different from the full list.** Always verify the candidate's information (name, phone, email) before executing commands like `edit`, `delete`, `mark`, `unmark`, or `remark` to avoid accidentally modifying the wrong candidate.
+
+</div>
+
 ### Viewing help : `help`
 
 Prints a help message with a description of all commands, as well as a link to this User Guide.
