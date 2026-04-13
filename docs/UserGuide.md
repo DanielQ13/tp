@@ -142,9 +142,12 @@ Examples:
 *  `edit 2 -name Betsy Crower -tag` Edits the name of the 2nd candidate to be `Betsy Crower` and **removes all existing
    tags.**
 *  `edit 3 -tag friend -tag colleague` Edits the tags of the 3rd candidate to be `friend` and `colleague`.
-* 
-#### Note:
->> The `-tag` field does not add to existing tags.<br> Always re-enter tags you wish to keep, or they will be lost.
+  
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about adding Tags:**<br>
+The `-tag` field does not add to existing tags.<br> Always re-enter tags you wish to keep, or they will be lost.
+</div>
 
 ### Locating candidates by name: `find`
 
