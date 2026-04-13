@@ -152,6 +152,12 @@ Examples:
 
 ### Filtering candidates by interview status: `filter`
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Because `find` uses fuzzy and partial matching,
+it may return multiple similar or loosely matching results, which
+may require manual filtering.
+</div>
+
 Finds candidates by interviewed status.
 
 Format: `filter -interviewed INTERVIEWED_STATUS`
