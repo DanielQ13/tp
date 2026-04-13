@@ -85,6 +85,7 @@ Format: `add -name NAME -phone PHONE_NUMBER -email EMAIL -address ADDRESS -tag T
 * `PHONE_NUMBER` must be exactly 8 digits and start with `8` or `9`.
 * The `-tag` field is optional.
 * The `-tag` field can be used multiple times to add multiple tags to a candidate. Eg: `-tag friend -tag colleague` adds the tags `friend` and `colleague` to the candidate.
+* A valid tag should contain 1-20 alphanumeric characters.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A candidate can have any number of tags (including 0)
