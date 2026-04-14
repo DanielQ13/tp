@@ -169,13 +169,13 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 * `find aled` returns `Alex Yeoh`<br> ![result for 'find aled'](images/findAledResult.png)
 
-### Filtering candidates by interview status: `filter`
-
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Because `find` uses fuzzy and partial matching,
 it may return multiple similar or loosely matching results, which
 may require manual filtering.
 </div>
+
+### Filtering candidates by interview status: `filter`
 
 Finds candidates by interviewed status.
 
@@ -275,6 +275,8 @@ Alias: `bye`
 ### Saving the data
 
 RecruiterPlus data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+If no data is found, the application will fall back to using sample data.
 
 ### Editing the data file
 
