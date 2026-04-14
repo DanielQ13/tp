@@ -276,8 +276,6 @@ Alias: `bye`
 
 RecruiterPlus data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-If no data is found, the application will fall back to using sample data.
-
 ### Editing the data file
 
 RecruiterPlus data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
@@ -293,6 +291,10 @@ However, if the overall file is severely corrupted or contains values that viola
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous RecruiterPlus home folder.
+
+**Q**: What happens if no data is found?<br>
+**A**: If no data file is detect (e.g. it has been removed or moved to a different location),
+the application will automatically fall back to using sample data. 
 
 --------------------------------------------------------------------------------------------------------------------
 
